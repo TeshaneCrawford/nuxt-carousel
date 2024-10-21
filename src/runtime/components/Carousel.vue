@@ -203,7 +203,6 @@ const getNextIndex = (currentIndex: number, totalItems: number): number => {
 </script>
 
 <style scoped lang="scss">
-/* Styles remain the same as in the original Astro component */
 .carousel {
   display: unset;
   background-color: rgba(250, 250, 250, 0.5);

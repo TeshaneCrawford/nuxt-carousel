@@ -13,7 +13,7 @@
             class="entry__elem"
           >
             <NuxtLink
-              :to="{ path: '/', query: { image: i.toString() } }"
+              :to="`/?image=${i}`"
               :data-carousel-index="i"
               class="entry__link"
             >

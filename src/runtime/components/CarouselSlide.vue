@@ -5,7 +5,7 @@
   >
     <Photo
       v-bind="$attrs"
-      class-wrapper="carousel__slide-photo"
+      :class-wrapper="carousel__slide-photo"
       :aspect-ratio="aspectRatio"
       :is-carousel="true"
       loading="lazy"

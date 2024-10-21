@@ -36,7 +36,9 @@ interface Props {
   height: number
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  classWrapper: '',
+})
 
 const aspectRatio = props.aspectRatio ?? props.width / props.height
 const widthPlaceholder = Math.max(Math.floor(props.width / 100), 5)
