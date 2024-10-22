@@ -105,6 +105,7 @@
 
 <script lang="ts" setup>
 import CarouselSlide from './CarouselSlide.vue'
+import { useRoute } from '#app'
 
 interface CarouselImage {
   src: string
