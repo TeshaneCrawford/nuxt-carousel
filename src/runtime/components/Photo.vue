@@ -24,6 +24,8 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue'
+
 import Loading from './Loading.vue'
 
 interface Props {
