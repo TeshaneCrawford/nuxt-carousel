@@ -104,8 +104,9 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import CarouselSlide from './CarouselSlide.vue'
-import { useRoute } from '#app'
+import { useRoute, useRouter } from '#imports'
 
 interface CarouselImage {
   src: string
