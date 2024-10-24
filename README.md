@@ -37,8 +37,7 @@ Install the module to your Nuxt application with one command:
 npx nuxi module add nuxt-carousel
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
-
+That's it! You can now use nuxt-carousel Module in your Nuxt app ✨
 
 ## Contribution
 
@@ -70,7 +69,6 @@ That's it! You can now use My Module in your Nuxt app ✨
   ```
 
 </details>
-
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=020420&colorB=00DC82
