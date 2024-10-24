@@ -72,5 +72,30 @@ useHead({
 </script>
 
 <style lang="scss" scoped>
-
+.entry {
+  &__entries {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__elem {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    min-height: 100%;
+  }
+  &__link {
+    display: block;
+  }
+}
 </style>
