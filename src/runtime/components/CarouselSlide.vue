@@ -1,11 +1,11 @@
 <template>
   <li
     class="carousel__slide"
-    :style="{ aspectRatio, width, height }"
+    :class="{ 'carousel__slide--visible': $attrs.class?.includes('carousel__slide--visible') }"
   >
     <Photo
       v-bind="$attrs"
-      :class-wrapper="carousel__slide-photo"
+      class="carousel__slide-photo"
       :aspect-ratio="aspectRatio"
       :is-carousel="true"
       loading="lazy"
@@ -29,41 +29,32 @@ const props = defineProps({
 })
 
 const aspectRatio = computed(() => Number(props.width) / Number(props.height))
-// eslint-disable-next-line vue/no-dupe-keys
-const width = computed(() => aspectRatio.value > 1 ? '100%' : 'auto')
-// eslint-disable-next-line vue/no-dupe-keys
-const height = computed(() => aspectRatio.value > 1 ? 'auto' : '100%')
 </script>
 
 <style scoped lang="scss">
 .carousel__slide {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: none;
-  justify-content: center;
   align-items: center;
-  max-width: 100%;
-  list-style: none;
-  user-select: none;
-  pointer-events: none;
-  * {
-    pointer-events: all;
-  }
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
   &--visible {
     display: flex;
-    z-index: 1;
+    opacity: 1;
   }
 }
 
 :deep(.carousel__slide-photo) {
-  max-height: calc(100dvh - 20px * 2);
-  background-color: #fff;
-  box-shadow: 0px 0px 20px 1px #cacaca;
-  border: 8px solid #fff;
-  & > * {
-    flex-basis: 100%;
-  }
-  @media screen and (min-width: 768px) {
-    border-width: 20px;
+  object-fit: contain;
+  background-color: white;
+  border: 2px solid white;
+  box-shadow: 0 0 10px 1px #cacaca;
+
+  @media (min-width: 768px) {
+      max-height: calc(100dvh - 20px * 2);
   }
 }
 </style>

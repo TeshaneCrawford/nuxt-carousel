@@ -78,7 +78,7 @@ onMounted(() => {
   max-height: 100%;
   overflow: hidden; // Safari fix
   @media screen and (min-width: 768px) {
-    border-width: 20px;
+    // border-width: 20px;
   }
   .placeholder {
     position: absolute;

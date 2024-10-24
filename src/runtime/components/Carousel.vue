@@ -9,7 +9,7 @@
     <div
       class="carousel__overlay"
       @click="close"
-    ></div>
+    />
     <div
       id="carousel"
       role="document"
@@ -33,23 +33,18 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             d="M6 18L18 6M6 6l12 12"
-          ></path>
+          />
         </svg>
       </button>
-      <div
-        id="carousel__wrapper"
-        class="carousel__wrapper"
-      >
+
+      <div class="carousel__wrapper">
         <div class="carousel__main">
-          <!-- Prev Link -->
-          <a
-            id="prevLink"
+          <button
             class="carousel__button carousel__button--arrow"
-            aria-label="Go to previous photo"
-            @click.prevent="goToPrev"
+            aria-label="Previous photo"
+            @click="goToPrev"
           >
             <svg
-              id="prev"
               class="carousel__svg"
               fill="none"
               stroke="currentColor"
@@ -60,30 +55,27 @@
                 stroke-linejoin="round"
                 stroke-width="2"
                 d="M15 19l-7-7 7-7"
-              ></path>
+              />
             </svg>
-          </a>
-          <!-- Slides -->
-          <ul
-            id="slides"
-            class="carousel__slides"
-          >
-            <CarouselSlide
-              v-for="(image, i) in images"
-              :key="i"
-              v-bind="image"
-              :class="{ 'carousel__slide--visible': i === currentIdx }"
-            />
-          </ul>
-          <!-- Next Link -->
-          <a
-            id="nextLink"
-            class="carousel__button carousel__button--arrow carousel__button--right"
-            aria-label="Go to next photo"
-            @click.prevent="goToNext"
+          </button>
+
+          <div class="carousel__content">
+            <ul class="carousel__slides">
+              <CarouselSlide
+                v-for="(image, i) in images"
+                :key="i"
+                v-bind="image"
+                :class="{ 'carousel__slide--visible': i === currentIdx }"
+              />
+            </ul>
+          </div>
+
+          <button
+            class="carousel__button carousel__button--arrow"
+            aria-label="Next photo"
+            @click="goToNext"
           >
             <svg
-              id="next"
               class="carousel__svg"
               fill="none"
               stroke="currentColor"
@@ -94,9 +86,9 @@
                 stroke-linejoin="round"
                 stroke-width="2"
                 d="M9 5l7 7-7 7"
-              ></path>
+              />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -206,91 +198,109 @@ const getNextIndex = (currentIndex: number, totalItems: number): number => {
 
 <style scoped lang="scss">
 .carousel {
-  display: unset;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
   background-color: rgba(250, 250, 250, 0.5);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+
   &[aria-hidden="true"] {
     display: none;
   }
-  &,
+
   &__overlay {
     position: fixed;
     inset: 0;
-    user-select: none;
     z-index: 1;
   }
-  &--active {
-    display: unset;
-  }
-  &__close {
-    position: absolute;
-    right: 0;
-  }
+
   &__wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    position: relative;
+    height: 100dvh;
+    z-index: 2;
   }
+
   &__main {
-    display: grid;
-    grid-template-columns: 0.25fr minmax(0, 100%) 0.25fr;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    @media screen and (min-width: 768px) {
-      grid-template-columns: 0.25fr minmax(0, 0.9fr) 0.25fr;
-    }
-  }
-  &__slides {
-    padding: 0;
-    margin: 0;
     position: relative;
     display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: auto;
+  }
+
+  &__content {
+    flex-grow: 1;
+    height: 100%;
+    padding: 0;
+    margin: auto;
+  }
+
+  &__slides {
+    position: relative;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+    @media (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 50dvw;
+    }
+  }
+
+  &__button {
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: calc(100% - 48px * 2);
-  }
-  &__button {
     width: 48px;
     height: 48px;
+    padding: 0;
     border: none;
     background: none;
-    margin: 1rem;
-    padding: 0;
     color: var(--tertiary);
-    z-index: 2;
+    z-index: 3;
+    cursor: pointer;
+
     &:hover {
-      cursor: pointer;
       color: var(--secondary);
     }
+
     &:focus-visible {
       outline: dashed 2px var(--primary);
     }
-    &--right {
-      justify-self: end;
-      justify-content: flex-end;
-    }
+
     &--arrow {
-      display: flex;
-      align-items: center;
-      height: 50vh;
-      margin: 0;
-      @media screen and (min-width: 768px) {
-        margin: 1rem;
+      flex-shrink: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      margin: 0 12px;
+
+      @media (min-width: 768px) {
+        margin: 0 24px;
       }
     }
   }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+
   &__svg {
     width: 24px;
     height: 24px;
-    @media screen and (min-width: 768px) {
-      width: 48px;
-      height: 48px;
+
+    @media (min-width: 768px) {
+      width: 32px;
+      height: 32px;
     }
   }
 }
