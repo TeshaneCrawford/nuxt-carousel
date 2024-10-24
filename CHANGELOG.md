@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.6
+
+[compare changes](https://github.com/your-org/nuxt-carousel/compare/v1.0.5...v1.0.6)
+
+### 🏡 Chore
+
+- Update ([9b1927c](https://github.com/your-org/nuxt-carousel/commit/9b1927c))
+
+### ❤️ Contributors
+
+- ᴛᴇꜱʜᴀɴᴇ ᴄʀᴀᴡꜰᴏʀᴅ ([@TeshaneCrawford](http://github.com/TeshaneCrawford))
+
 ## v1.0.5
 
 [compare changes](https://github.com/your-org/nuxt-carousel/compare/v1.0.4...v1.0.5)
